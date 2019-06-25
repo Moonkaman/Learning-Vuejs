@@ -10,12 +10,16 @@
           v-for="(answer, index) in shuffledAnswers"
           :key="index"
           @click="selectAnswer(index)"
-          :class="[selectedIndex === index ? 'selected' : '']"
+          :class="answerClass(index)"
         >{{ answer }}</b-list-group-item>
       </b-list-group>
 
-      <b-button variant="primary" href="#">Submit</b-button>
-      <b-button @click="next" variant="success" href="#">Next</b-button>
+      <b-button
+        variant="primary"
+        @click="submitAnswer"
+        :disabled="selectedIndex === null || answered"
+      >Submit</b-button>
+      <b-button @click="next" variant="success">Next</b-button>
     </b-jumbotron>
   </div>
 </template>
@@ -26,12 +30,15 @@ import _ from "lodash";
 export default {
   props: {
     question: Object,
-    next: Function
+    next: Function,
+    increment: Function
   },
   data() {
     return {
       selectedIndex: null,
-      shuffledAnswers: []
+      shuffledAnswers: [],
+      correctIndex: null,
+      answered: false
     };
   },
   computed: {
@@ -48,6 +55,7 @@ export default {
       immediate: true,
       handler() {
         this.selectedIndex = null;
+        this.answered = false;
         this.shuffleAnswers();
       }
     }
@@ -61,7 +69,37 @@ export default {
         ...this.question.incorrect_answers,
         this.question.correct_answer
       ];
+
       this.shuffledAnswers = _.shuffle(answers);
+      this.correctIndex = this.shuffledAnswers.indexOf(
+        this.question.correct_answer
+      );
+    },
+    submitAnswer() {
+      let isCorrect = false;
+      if (this.selectedIndex === this.correctIndex) {
+        isCorrect = true;
+      }
+      this.answered = true;
+
+      this.increment(isCorrect);
+    },
+    answerClass(i) {
+      let answerClass = "";
+
+      if (!this.answered && this.selectedIndex === i) {
+        answerClass = "selected";
+      } else if (this.answered && this.correctIndex === i) {
+        answerClass = "correct";
+      } else if (
+        this.answered &&
+        this.selectedIndex === i &&
+        this.correctIndex !== i
+      ) {
+        answerClass = "wrong";
+      }
+
+      return answerClass;
     }
   }
 };
