@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import About from './views/About'
+import Cats from './views/Cats'
+import Dogs from './views/Dogs'
+import Pet from './views/Pet'
 
 Vue.use(Router)
 
@@ -15,9 +17,19 @@ export default new Router({
       component: Home
     },
     {
-      path: '/about',
-      name: 'about',
-      component: About
+      path: '/cats',
+      name: 'cats',
+      component: Cats
+    },
+    {
+      path: '/dogs',
+      name: 'dogs',
+      component: Dogs
+    },
+    {
+      path: '/pet',
+      name: 'pet',
+      component: Pet
     }
   ]
 })
