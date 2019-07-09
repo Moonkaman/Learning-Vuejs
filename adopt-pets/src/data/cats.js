@@ -1,6 +1,7 @@
 export default [
   {
     name: 'Tizzy',
+    species: 'cat',
     breed: 'Unknown',
     gender: 'female',
     age: 1,
@@ -11,6 +12,7 @@ export default [
   },
   {
     name: 'Firestar',
+    species: 'cat',
     breed: 'Tabby',
     gender: 'male',
     age: 7,

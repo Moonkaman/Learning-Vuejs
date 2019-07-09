@@ -1,6 +1,7 @@
 export default [
   {
     name: 'Chaloopa',
+    species: 'dog',
     breed: 'chihuahua lhasa apso mix',
     gender: 'female',
     age: 9,
@@ -11,6 +12,7 @@ export default [
   },
   {
     name: 'Pinky',
+    species: 'dog',
     breed: 'lhasa apso',
     gender: 'male',
     age: 9,
@@ -21,6 +23,7 @@ export default [
   },
   {
     name: 'Shadow',
+    species: 'dog',
     breed: 'blacklab patterdale mix',
     gender: 'male',
     age: 1,
@@ -31,6 +34,7 @@ export default [
   },
   {
     name: 'Linkin',
+    species: 'dog',
     breed: 'Husky',
     gender: 'male',
     age: 2,

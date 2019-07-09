@@ -1,7 +1,12 @@
 <template>
   <div class="home">
     <h1>Adopt a Bud</h1>
-    <button class="btn btn-primary" @click="showPetForm = !showPetForm">Add New Pet</button>
+    {{getAllCats.length}}
+    {{animalsCount}}
+    <button
+      class="btn btn-primary"
+      @click="showPetForm = !showPetForm"
+    >Add New Pet</button>
 
     <b-form @submit.prevent="handleSubmit" v-if="showPetForm">
       <b-form-group id="input-group-2" label="Pet Name:" label-for="input-2">
@@ -29,7 +34,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import router from "vue-router";
 export default {
   name: "home",
@@ -42,6 +47,9 @@ export default {
         species: null
       }
     };
+  },
+  computed: {
+    ...mapGetters(["animalsCount", "getAllCats"])
   },
   methods: {
     ...mapActions(["addPet"]),
